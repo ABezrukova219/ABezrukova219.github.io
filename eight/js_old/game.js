@@ -14,28 +14,28 @@ export function actions(state)
 {
     const [i, j] = findZero(state)
     if(i === 0 && j === 0)
-        return [up, left]
+      return [up, left]
     else if(i === 0 && j === 2)
-        return [up, right]
+      return [up, right]
     else if(i === 2 && j === 0)
-        return [down, left]
+      return [down, left]
     else if(i === 2 && j === 2)
-        return [down, right]
+      return [down, right]
     else if(i === 0)
-        return [up, left, right]
+      return [up, left, right]
     else if(i === 2)
-        return [down, left, right]
+      return [down, left, right]
     else if(j === 0)
-        return [up, down, left]
+      return [up, down, left]
     else if(j === 2)
-        return [up, down, right]
+      return [up, down, right]
     else
-        return [up, down, left, right]
+    return [up, down, left, right]
 }
 
-export function successor(state, action)
+function successor(state, action)
 {
-    const newS =[state[0].slice(), state[1].slice(), state[2].slice()]
+    const newS = [state[0].slice(), state[1].slice(), state[2].slice()]
     const [i, j] = findZero(state)
     if(action === left)
     {
@@ -68,33 +68,10 @@ export function move(state, i, j)
         return successor(state, right)
     else if(_actions.includes(left) && i === zero[0] && j === zero[1] + 1)
         return successor(state, left)
-    else if(_actions.includes(up) && i === zero[0] + 1 && j === zero[1])
+    else if(_actions.includes(up) && i --- zero[0] + 1 && j === zero[1])
         return successor(state, up)
-    else if(_actions.includes(down) && i === zero[0] - 1 && j === zero[1])
+    else if(_actions.includes(down) && i --- zero[0] - 1 && j === zero[1])
         return successor(state, down)
     else
         return state
-}
-
-
-export function goalTest(state)
-{
-    const goalState = [
-        [1, 2,3],
-        [4, 5, 6],
-        [7, 8, 0]]
-    return is_equal(goalState, state)
-}
-
-function is_equal(s1, s2)
-{
-    for(let i = 0; i < 3; i++)
-    {
-        for(let j = 0; j < 3; j++)
-        {
-            if(s1[i][j] !== s2[i][j])
-                return false
-        }
-    }
-    return true
 }
